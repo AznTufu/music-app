@@ -34,13 +34,23 @@ class TrackController extends Controller
             'music' => ['file', 'required', 'extensions:mp3,wav'],
         ]);
         
+        $uuid = 'trk-' . Str::uuid();
+
+        $extension = $request->image->extension();
+        $imagePath = $request->image->storeAs('tracks/images', $uuid . '.' . $extension);
+
+        $extension = $request->music->extension();
+        $musicPath = $request->music->storeAs('tracks/music', $uuid . '.' . $extension);
+
         Track::create([
-            'uuid' => 'trk-' . Str::uuid(), // 'trk-uuid
+            'uuid' => $uuid,
             'title' => $request->title,
             'artist' => $request->artist,
             'display' => $request->display,
-            'image' => $request->image->store('images', 'public'),
-            'music' => $request->music->store('music', 'public'),
+            'image' => $imagePath,
+            'music' => $musicPath,
         ]);
+
+        return redirect()->route('tracks.index');
     }
 }
