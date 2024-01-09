@@ -87,6 +87,9 @@ export default {
       }
 
       this.currentTrack = track.uuid;
+      this.audio.addEventListener('ended', () => {
+        this.currentTrack = null;
+      });
     }
   },
 };
