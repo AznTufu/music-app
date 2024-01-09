@@ -17,7 +17,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [TrackController::class, 'index']);
+Route::get('/', [TrackController::class, 'index'])->name('tracks.index');
+Route::get('/tracks/create', [TrackController::class, 'create'])->name('tracks.create');
 
 Route::middleware([
     'auth:sanctum',
