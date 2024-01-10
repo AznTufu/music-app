@@ -6,7 +6,6 @@ use inertia\Inertia;
 use App\Models\Track;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 
 class TrackController extends Controller
 {
@@ -50,6 +49,36 @@ class TrackController extends Controller
             'image' => $imagePath,
             'music' => $musicPath,
         ]);
+
+        return redirect()->route('tracks.index');
+    }
+    public function edit(Track $track)
+    {
+        return Inertia::render('Track/Edit', [
+            'track' => $track,
+        ]);
+    }
+
+    public function update(Request $request, Track $track)
+    {
+        $request->validate([
+            'title' => ['string', 'required', 'max:255'],
+            'artist' => ['string', 'required', 'max:255'],
+            'display' => ['boolean', 'required'],
+        ]);
+
+
+        $track->title = $request->title;
+        $track->artist = $request->artist;
+        $track->display = $request->display;
+        $track->save();
+
+        return redirect()->route('tracks.index');
+    }
+
+    public function destroy(Track $track)
+    {
+        $track->delete();
 
         return redirect()->route('tracks.index');
     }
