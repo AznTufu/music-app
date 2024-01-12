@@ -78,7 +78,6 @@
             v-model="form.display"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :class="{ 'border-red-500': form.errors.display }"
-            type="select"
           >
             <option :value="true">Oui</option>
             <option :value="false">Non</option>
@@ -92,7 +91,6 @@
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-all"
         >
       </form>
-      {{ form.errors }}
     </template>
   </MusicLayout>
 </template>

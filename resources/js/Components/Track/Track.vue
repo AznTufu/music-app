@@ -20,12 +20,14 @@
     </button>
     <div class="flex w-full justify-between">
       <Link
+      v-if="$page.props.isAdmin"
         :href="route('tracks.edit', { track: track })"
         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-all"
       >
         Modifier
       </Link>
       <Link
+      v-if="$page.props.isAdmin"
         :href="route('tracks.destroy', { track: track })"
         method="delete"
         as="button"

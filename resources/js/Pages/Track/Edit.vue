@@ -52,7 +52,6 @@
             v-model="form.display"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             :class="{ 'border-red-500': form.errors.display }"
-            type="select"
           >
             <option :value="true">Oui</option>
             <option :value="false">Non</option>

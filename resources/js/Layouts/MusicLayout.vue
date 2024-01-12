@@ -24,7 +24,7 @@
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                   <Link :href="route('tracks.index')" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Musics</Link>
-                  <Link href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">PlayLists</Link>
+                  <Link :href="route('playlists.index')" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">PlayLists</Link>
                 </div>
               </div>
             </div>
@@ -32,10 +32,25 @@
   
               <!-- User Auth -->
               <div class="relative ml-3">
-                <Link :href="route('login')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">Se connecter</Link>
-                <Link :href="route('logout')" method="post" as="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-2 px-4 rounded mr-3">Se déconnecter</Link>
+                <Link 
+                  v-if="!$page.props.auth.user"
+                  :href="route('login')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3"
+                >
+                  Se connecter
+                </Link>
+                <Link  
+                  v-if="$page.props.auth.user"
+                  :href="route('logout')" method="post" as="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-2 px-4 rounded mr-3"
+                >
+                  Se déconnecter
+                </Link>
                 
-                <Link :href="route('register')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3">Créer un compte</Link>
+                <Link 
+                  v-if="!$page.props.auth.user"
+                  :href="route('register')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3"
+                >
+                  Créer un compte
+                </Link>
               </div>
             </div>
           </div>
