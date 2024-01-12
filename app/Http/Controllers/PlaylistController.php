@@ -23,7 +23,6 @@ class PlaylistController extends Controller
             "playlists" => $playlists,
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      */
